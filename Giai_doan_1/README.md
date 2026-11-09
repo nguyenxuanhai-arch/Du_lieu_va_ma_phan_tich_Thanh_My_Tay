@@ -46,6 +46,20 @@ python kiem_chung.py
 
 Chương trình đọc trực tiếp ZIP nguồn, viết bảng và hình mới, nối nhật ký vào cuối tệp. Kiểm chứng dùng NetworkX tính lại chi phí trên đồ thị chuyển tiếp, đối chiếu hình học trong ranh và kiểm tra từng cạnh của tuyến mẫu qua hẻm. Thời gian xử lý có thể thay đổi theo máy và tải hệ thống.
 
+## Tải bản dữ liệu mới trực tiếp từ OSM
+
+Cài các thư viện trong `requirements.txt` rồi chạy các lệnh dưới đây từ `Giai_doan_1/`.
+Hai thư mục chỉ định trong ví dụ được tạo khi chạy.
+
+```bash
+python tai_du_lieu_osm.py --output-dir data/thu_thap_osm/lan_01
+python phan_tich.py --archive data/thu_thap_osm/lan_01/Du_lieu_Thanh_My_Tay_OSM.zip --run-dir ket_qua_osm/lan_01
+```
+
+Script lấy relation 19260956 và mạng đường quanh ranh từ [OSM API 0.6](https://wiki.openstreetmap.org/wiki/API_v0.6). Script giữ hai phản hồi gốc, cắt lớp đường theo polygon và đóng gói PBF, GeoJSON, thông tin nguồn và mã SHA-256. PBF giữ các nút tham chiếu của đường được chọn và những relation hạn chế rẽ liên quan có trong phản hồi. Nhật ký `data/thu_thap_osm/lan_01/nhat_ky.tsv` ghi URL, giờ tải và số đối tượng xuất. Xem [nhật ký chạy kiểm tra](logs/kiem_tra_tai_osm.tsv) của lần tải ngày 09/11/2026.
+
+Bản tải mới phản ánh trạng thái OSM vào lúc tải. Các số liệu trong báo cáo đã bàn giao được tính từ ZIP Geofabrik ngày 02/11/2026. Lệnh `python phan_tich.py` dùng ZIP Geofabrik đó theo mặc định. `kiem_chung.py` kiểm tra bộ kết quả gốc. Để tái lập kết quả từ một lần tải mới, lưu lại ZIP và thông tin nguồn của lần tải đó.
+
 ## Phần đánh giá còn mở
 
 - RQ1 cần kết quả khảo sát tại 24 vị trí và đối chiếu biển/cổng để tính độ trùng khớp. Mục 6.2 của đề cương yêu cầu có ý kiến đồng ý của giảng viên trước khi khảo sát.

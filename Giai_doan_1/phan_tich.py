@@ -1,4 +1,5 @@
 """Phân tích dữ liệu bản đồ OSM tại phường Thạnh Mỹ Tây."""
+import argparse
 import csv
 import hashlib
 import heapq
@@ -72,8 +73,7 @@ def access(tags):
     return next((tags[k] for k in ACCESS_KEYS if k in tags), '')
 
 
-def read_sources():
-    archive = ROOT / 'data/raw/Du_lieu_Thanh_My_Tay_OSM.zip'
+def read_sources(archive):
     log('SHA-256 ZIP gốc %s' % hashlib.sha256(archive.read_bytes()).hexdigest())
     with zipfile.ZipFile(archive) as z, tempfile.TemporaryDirectory() as tmp:
         base = 'Thanh_My_Tay/'
@@ -81,6 +81,11 @@ def read_sources():
         for line in checks:
             expected, name = line.split(maxsplit=1)
             assert hashlib.sha256(z.read(base + name.strip())).hexdigest() == expected, name
+        source = 'Geofabrik · 02/11/2026 UTC'
+        if base + 'nguon.json' in z.namelist():
+            provenance = json.loads(z.read(base + 'nguon.json'))
+            date = datetime.fromisoformat(provenance['map']['downloaded_at'])
+            source = f'OSM API · tải {date:%d/%m/%Y} (UTC+07)'
         boundary_data = json.loads(z.read(base + 'ranh_gioi.geojson'))
         way_ids = {f['properties']['osm_id'] for f in json.loads(z.read(base + 'duong_giao_thong.geojson'))['features']}
         path = Path(tmp) / 'input.pbf'
@@ -100,7 +105,7 @@ def read_sources():
     boundary = transform(TO_M, shape(boundary_data['features'][0]['geometry']))
     assert boundary.is_valid and not boundary.is_empty
     log(f'Khớp {len(checks)} mã SHA-256; đọc {len(nodes)} node, {len(ways)} way đường, {len(relations)} relation cấm rẽ')
-    return boundary, nodes, ways, relations
+    return boundary, nodes, ways, relations, source
 
 
 def restrictions(relations):
@@ -478,13 +483,12 @@ def measure(g, edges, outgoing, links, main_nodes, gateways):
     return test_rows, od_rows, alternative_rows, lines
 
 
-def make_figures(boundary, geometry, g, gateways, counts, results, od_rows, alternative, routes):
-    dst = ROOT / 'figures'
+def make_figures(boundary, geometry, g, gateways, counts, results, alternative, routes, dst, provenance):
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 10, 'axes.spines.top': False,
                          'axes.spines.right': False, 'svg.fonttype': 'none'})
     colors = {'truc': '#1e3a62', 'hem': '#c34522', 'khac': '#c2c7cc'}
     labels = {'truc': 'Bốn trục nghiên cứu', 'hem': 'Hẻm theo thẻ hoặc tên OSM', 'khac': 'Đường khác trong mô hình'}
-    source = '© OpenStreetMap contributors · Geofabrik · 02/11/2026 UTC'
+    source = f'© OpenStreetMap contributors · {provenance}'
 
     def map_base(title, subtitle):
         fig, ax = plt.subplots(figsize=(9.2, 7.2), layout='constrained')
@@ -561,9 +565,23 @@ def make_figures(boundary, geometry, g, gateways, counts, results, od_rows, alte
 
 
 def main():
+    global OUT, LOG
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--archive', type=Path, help='ZIP dữ liệu từ tai_du_lieu_osm.py')
+    parser.add_argument('--run-dir', type=Path, help='Thư mục riêng cho bảng, hình và nhật ký')
+    args = parser.parse_args()
+    if args.archive is not None and args.run_dir is None:
+        parser.error('--archive yêu cầu --run-dir để tách riêng kết quả')
+    archive = args.archive or ROOT / 'data/raw/Du_lieu_Thanh_My_Tay_OSM.zip'
+    run_dir = args.run_dir.resolve() if args.run_dir else ROOT
+    if args.run_dir:
+        run_dir.mkdir(parents=True, exist_ok=False)
+    OUT = run_dir / 'data/clean'
+    LOG = run_dir / 'logs/nhat_ky.tsv'
+    figures = run_dir / 'figures'
     OUT.mkdir(parents=True, exist_ok=True)
     LOG.parent.mkdir(parents=True, exist_ok=True)
-    (ROOT / 'figures').mkdir(parents=True, exist_ok=True)
+    figures.mkdir(parents=True, exist_ok=True)
     fmt = logging.Formatter('%(asctime)s\t%(levelname)s\t%(message)s')
     fmt.formatTime = lambda record, datefmt=None: datetime.fromtimestamp(
         record.created, ZoneInfo('Asia/Ho_Chi_Minh')).isoformat(timespec='milliseconds')
@@ -571,7 +589,8 @@ def main():
     handler.setFormatter(fmt)
     logging.basicConfig(level=logging.INFO, handlers=[handler])
     log(f'Bắt đầu lượt phân tích; OSMnx {ox.__version__}, NetworkX {nx.__version__}; xuất cả lớp đầu mút và tuyến qua hẻm')
-    boundary, nodes, ways, rel = read_sources()
+    boundary, nodes, ways, rel, source = read_sources(archive)
+    log(f'Nguồn bản đồ: {source}')
     forbidden, only, uncertain, retained = restrictions(rel)
     g, geometry, events = make_graph(boundary, nodes, ways, uncertain, retained)
     edges, outgoing = build_edges(g)
@@ -580,7 +599,7 @@ def main():
           ((a, b, r) for a, choices in links.items() for b, r in choices))
     main_nodes, gateways, counts, clusters, sample, dead, near_edge = topology(g, edges, boundary)
     results, od_rows, alternative, routes = measure(g, edges, outgoing, links, main_nodes, gateways)
-    good = make_figures(boundary, geometry, g, gateways, counts, results, od_rows, alternative, routes)
+    good = make_figures(boundary, geometry, g, gateways, counts, results, alternative, routes, figures, source)
     totals = {'way_osm': len(ways), 'way_giu': events['giữ'], 'nut': len(g), 'canh_co_huong': len(edges),
               'cum_hem': len(clusters), 'cum_co_tu_hai_dau_noi': sum(r[2] >= 2 for r in clusters),
               'cum_noi_tu_hai_truc': sum(r[3] >= 2 for r in clusters),
@@ -596,7 +615,7 @@ def main():
                                            'trung_vi_xu_ly_us': round(statistics.median(statistics.median(r[8]) for r in rows), 2),
                                            'cap_tuyen_toi_uu_co_hem': sum(r[6] > 0 for r in rows)}
     (OUT / 'tong_hop.json').write_text(json.dumps(totals, ensure_ascii=False, indent=2), encoding='utf-8')
-    log(f'Đã xuất bảng, lớp GeoJSON, {len(list((ROOT / "figures").glob("*.png")))} hình và thống kê tổng hợp')
+    log(f'Đã xuất bảng, lớp GeoJSON, {len(list(figures.glob("*.png")))} hình và thống kê tổng hợp')
 
 
 if __name__ == '__main__':

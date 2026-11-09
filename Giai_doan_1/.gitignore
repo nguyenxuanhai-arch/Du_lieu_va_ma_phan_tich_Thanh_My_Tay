@@ -1,0 +1,4 @@
+__pycache__/
+.venv/
+/data/thu_thap_osm/
+/ket_qua_osm/
