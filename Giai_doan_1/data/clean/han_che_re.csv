@@ -1,0 +1,31 @@
+﻿relation_osm,han_che,ngoai_le,xu_ly
+15868593,"no_u_turn @ (06:00-08:00,16:00-19:00)",bicycle;motorcycle,ngoại lệ xe máy
+15868597,"no_left_turn @ (06:00-08:00,16:00-19:00)",bicycle;motorcycle,ngoại lệ xe máy
+15868617,no_u_turn @ (06:00-20:00),bicycle;motorcycle,ngoại lệ xe máy
+15868629,no_left_turn @ (06:00-20:00),bicycle;motorcycle,ngoại lệ xe máy
+15868630,no_right_turn @ (06:00-20:00),bicycle;motorcycle,ngoại lệ xe máy
+16034353,no_right_turn,motorcycle;moped;mofa;bicycle,ngoại lệ xe máy
+16034355,no_left_turn @ (06:00-20:00),bicycle;motorcycle,ngoại lệ xe máy
+16034356,no_left_turn @ (06:00-20:00),bicycle;motorcycle,ngoại lệ xe máy
+16034357,no_straight_on @ (06:00-20:00),bicycle;motorcycle,ngoại lệ xe máy
+16759534,no_right_turn @ (17:00-20:00),bicycle;motorcycle;mofa;moped,ngoại lệ xe máy
+16759539,no_left_turn @ (17:00-20:00),bicycle;motorcycle;mofa;moped,ngoại lệ xe máy
+16759558,no_right_turn @ (17:00-20:00),bicycle;motorcycle;mofa;moped,ngoại lệ xe máy
+16759560,no_straight_on @ (17:00-20:00),bicycle;motorcycle;mofa;moped,ngoại lệ xe máy
+16773988,no_straight_on @ (17:00-20:00),bicycle;motorcycle;mofa;moped,ngoại lệ xe máy
+17587756,"no_left_turn @ (06:30-08:30,16:00-19:00)",motorcycle;moped;mofa;bicycle,ngoại lệ xe máy
+17745778,"no_left_turn @ (06:00-08:00,16:00-20:00)",motorcycle;moped;mofa;bicycle,ngoại lệ xe máy
+17915692,no_left_turn,bicycle;motorcycle,ngoại lệ xe máy
+18167426,"no_left_turn @ (06:00-08:00,16:00-19:00)",motorcycle;moped;mofa;bicycle,ngoại lệ xe máy
+19308665,no_left_turn,bicycle;motorcycle,ngoại lệ xe máy
+19308666,no_left_turn,bicycle;motorcycle,ngoại lệ xe máy
+19523603,"no_left_turn @ (06:00-08:00,16:00-19:00)",bicycle;motorcycle,ngoại lệ xe máy
+21129411,no_u_turn,,tạm loại way via/from khỏi mô hình
+21129412,no_u_turn,,tạm loại way via/from khỏi mô hình
+21132263,no_left_turn,,áp dụng tại nút
+21181331,no_straight_on,,áp dụng tại nút
+21636222,only_straight_on,,áp dụng tại nút
+21636223,only_straight_on,,áp dụng tại nút
+21636224,only_straight_on,,áp dụng tại nút
+21636225,no_straight_on,,áp dụng tại nút
+21636226,only_left_turn,,áp dụng tại nút

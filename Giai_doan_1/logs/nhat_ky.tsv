@@ -1,0 +1,30 @@
+thoi_gian_utc_plus_7	muc	su_kien
+2026-11-09T21:24:40+07:00	INFO	Kiểm kê tệp nguồn được cung cấp
+2026-11-09T21:24:40+07:00	INFO	Trích văn bản hai PDF nguồn để đối chiếu
+2026-11-09T21:25:20+07:00	INFO	Đọc Mục 3, 4, 6, 7 đề cương và quy tắc xử lý dữ liệu trong LMS
+2026-11-09T21:25:33+07:00	INFO	Nhận bản ZIP OSM đã lưu; đối chiếu phạm vi theo Nghị quyết 1685
+2026-11-09T21:26:06+07:00	INFO	Kiểm tra SHA-256 của 9 tệp trong ZIP; lưu ZIP gốc
+2026-11-09T21:27:47+07:00	INFO	OSM API xác nhận relation 19260956 phiên bản 29; dùng cùng phiên bản với bản mạng đường
+2026-11-09T21:29:47.272+07:00	INFO	Bắt đầu lượt phân tích; OSMnx 2.1.0, NetworkX 3.7
+2026-11-09T21:29:47.273+07:00	INFO	SHA-256 ZIP gốc 05a1a64eba0435fad14484fe8cf95ef876b14a9e28e664a86ae5a6a13f84694b
+2026-11-09T21:29:47.650+07:00	INFO	Khớp 9 mã SHA-256; đọc 24312 node, 1676 way đường, 30 relation cấm rẽ
+2026-11-09T21:29:47.651+07:00	INFO	Hạn chế rẽ theo relation: {'ngoại lệ xe máy': 21, 'tạm loại way via/from khỏi mô hình': 2, 'áp dụng tại nút': 7}; way phòng ngừa: [192289491, 1542860539, 1567831026]
+2026-11-09T21:29:48.140+07:00	INFO	Làm sạch: {'giữ': 1219, 'hạn chế tiếp cận': 31, 'motorroad thiếu xác nhận xe máy': 9, 'relation via-way chưa giải mã': 3, 'lối vào riêng hoặc đường nội bộ': 25, 'loại đường ngoài mô hình': 389}; 4291 nút, 8177 cạnh có hướng trước đơn giản hóa
+2026-11-09T21:29:48.294+07:00	INFO	OSMnx đơn giản hóa: 1839 nút, 4134 cạnh có hướng; tổng chiều dài có hướng bảo toàn
+2026-11-09T21:29:48.618+07:00	INFO	Áp dụng quy tắc theo cạnh đến: 7143 chuyển tiếp; 9 nút chắn
+2026-11-09T21:29:48.650+07:00	INFO	NetworkX: 139 cụm hẻm, 101 nút đấu nối; 363 nghi đầu cụt, 12 sát ranh; chọn 24 vị trí; cắt 0 nhánh
+2026-11-09T21:29:49.498+07:00	INFO	Đã chạy 24 cặp với 3 mức phạt, 11 lượt đo mỗi thuật toán/cặp; kiểm tra chi phí hai thuật toán khớp
+2026-11-09T21:29:50.384+07:00	INFO	Đã xuất bảng, lớp GeoJSON, 4 hình và thống kê tổng hợp
+2026-11-09T21:30:35.593+07:00	INFO	Bắt đầu lượt phân tích; OSMnx 2.1.0, NetworkX 3.7; xuất cả lớp đầu mút và tuyến qua hẻm
+2026-11-09T21:30:35.594+07:00	INFO	SHA-256 ZIP gốc 05a1a64eba0435fad14484fe8cf95ef876b14a9e28e664a86ae5a6a13f84694b
+2026-11-09T21:30:36.124+07:00	INFO	Khớp 9 mã SHA-256; đọc 24312 node, 1676 way đường, 30 relation cấm rẽ
+2026-11-09T21:30:36.125+07:00	INFO	Hạn chế rẽ theo relation: {'ngoại lệ xe máy': 21, 'tạm loại way via/from khỏi mô hình': 2, 'áp dụng tại nút': 7}; way phòng ngừa: [192289491, 1542860539, 1567831026]
+2026-11-09T21:30:36.713+07:00	INFO	Làm sạch: {'giữ': 1219, 'hạn chế tiếp cận': 31, 'motorroad thiếu xác nhận xe máy': 9, 'relation via-way chưa giải mã': 3, 'lối vào riêng hoặc đường nội bộ': 25, 'loại đường ngoài mô hình': 389}; 4291 nút, 8177 cạnh có hướng trước đơn giản hóa
+2026-11-09T21:30:36.914+07:00	INFO	OSMnx đơn giản hóa: 1839 nút, 4134 cạnh có hướng; tổng chiều dài có hướng bảo toàn
+2026-11-09T21:30:37.326+07:00	INFO	Áp dụng quy tắc theo cạnh đến: 7143 chuyển tiếp; 9 nút chắn
+2026-11-09T21:30:37.377+07:00	INFO	NetworkX: 139 cụm hẻm, 101 nút đấu nối; 363 nghi đầu cụt, 12 sát ranh; chọn 24 vị trí; cắt 0 nhánh
+2026-11-09T21:30:38.536+07:00	INFO	Đã chạy 24 cặp với 3 mức phạt, 11 lượt đo mỗi thuật toán/cặp; kiểm tra chi phí hai thuật toán khớp
+2026-11-09T21:30:39.646+07:00	INFO	Đã xuất bảng, lớp GeoJSON, 4 hình và thống kê tổng hợp
+2026-11-09T21:31:13.053+07:00	INFO	Kiểm chứng: polygon OSM API trùng bản gốc; các tuyến nằm trong ranh; 24 cặp × 3 mức phạt khớp với NetworkX; 21 tuyến qua hẻm kiểm tra được từng cạnh
+2026-11-09T21:31:36.689+07:00	INFO	Kiểm chứng: polygon OSM API trùng bản gốc; các tuyến nằm trong ranh; 24 cặp × 3 mức phạt khớp với NetworkX; 21 tuyến qua hẻm kiểm tra được từng cạnh
+2026-11-09T21:34:12+07:00	INFO	Đối chiếu bảng và kiểm tra bản hiển thị của 3 trang kết quả; chuẩn bị gói dữ liệu, mã và hình

@@ -1,0 +1,25 @@
+{
+  "raw_counts": {
+    "n": 24312,
+    "w": 4235,
+    "r": 40
+  },
+  "missing_references": 0,
+  "geojson": {
+    "duong_giao_thong": {
+      "features": 1676,
+      "invalid": 0,
+      "outside_boundary": 0
+    },
+    "dia_diem_va_nut_co_thuoc_tinh": {
+      "features": 849,
+      "invalid": 0,
+      "outside_boundary": 0
+    },
+    "doi_tuong_khac": {
+      "features": 2553,
+      "invalid": 0,
+      "outside_boundary": 0
+    }
+  }
+}

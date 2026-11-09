@@ -1,0 +1,40 @@
+{
+  "way_osm": 1676,
+  "way_giu": 1219,
+  "nut": 1839,
+  "canh_co_huong": 4134,
+  "cum_hem": 139,
+  "cum_co_tu_hai_dau_noi": 14,
+  "cum_noi_tu_hai_truc": 7,
+  "dau_noi_khac_nhau": 101,
+  "dau_noi_theo_truc": {
+    "Xô Viết Nghệ Tĩnh": 42,
+    "Điện Biên Phủ": 28,
+    "Nguyễn Gia Trí": 8,
+    "Ung Văn Khiêm": 23
+  },
+  "nghi_dau_cut": 363,
+  "dau_cut_sat_ranh": 12,
+  "vi_tri_doi_chieu": 24,
+  "nhanh_cat": 0,
+  "cap_diem": 24,
+  "cap_co_tuyen": 22,
+  "cap_co_tuyen_mau_qua_hem": 21,
+  "trang_thai_tuyen_qua_hem": {
+    "có tuyến mẫu qua hẻm": 21,
+    "không tìm thấy": 2,
+    "ứng viên lặp nút": 1
+  },
+  "theo_thuat_toan": {
+    "Dijkstra": {
+      "trung_vi_trang_thai": 784.5,
+      "trung_vi_xu_ly_us": 999.42,
+      "cap_tuyen_toi_uu_co_hem": 9
+    },
+    "A*": {
+      "trung_vi_trang_thai": 234.0,
+      "trung_vi_xu_ly_us": 571.11,
+      "cap_tuyen_toi_uu_co_hem": 9
+    }
+  }
+}

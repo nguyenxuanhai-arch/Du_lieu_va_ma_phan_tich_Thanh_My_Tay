@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Du_lieu_Thanh_My_Tay_OSM">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Giai_doan_1/data/raw/Du_lieu_Thanh_My_Tay_OSM.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
